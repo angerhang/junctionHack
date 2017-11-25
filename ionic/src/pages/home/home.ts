@@ -13,7 +13,7 @@ export class HomePage {
   public audioData: string;
   response: AdInterface = {
     url: "http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg",
-    
+
   }
 
   public media = new MediaPlugin('../Library/NoCloud/recording.wav');
@@ -50,7 +50,7 @@ export class HomePage {
       // imageData is a base64 encoded string
       this.base64Image = "data:image/jpeg;base64," + imageData
     }, (err) => {
-      this.showAlert(err.message)
+      // this.showAlert(err.message)
     });
   }
 
