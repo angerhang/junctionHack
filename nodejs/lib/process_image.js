@@ -47,7 +47,7 @@ exports.getObjectDesc = function (filePath) {
     .then((annotations) => {
       const desc = annotationsToText(annotations)
 
-      return getAsync('python --version')
+      return getAsync(`source ../scripts/facebookenv/bin/activate && python ../scripts/getItem.py "${desc}" ../scripts/1.jpeg`)
         .then(data => {
           console.log('cmd data', data)
           return desc
