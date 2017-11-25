@@ -32,8 +32,8 @@ router.post('/annotate', upload.single('imagedata'), function (req, res) {
   if (!req.file) {
     throw new Error('No image sent')
   }
-  if (!/^image\/(jpe?g|png|gif)$/i.test(req.file.mimetype) && !/^application\/(pdf)$/i.test(req.file.mimetype)) {
-    throw new Error('Supports only image and pdf formats.')
+  if (!/^image\/(jpe?g|png)$/i.test(req.file.mimetype)) {
+    throw new Error('Supports only png/jpg formats.')
   }
 
   gVision.getAnnotations(req.file.path)

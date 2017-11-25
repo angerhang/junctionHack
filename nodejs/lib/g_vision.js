@@ -9,7 +9,34 @@ exports.getAnnotations = function (filename) {
     image: {source: {filename}},
     features: [
       {
+        type: 'FACE_DETECTION'
+      },
+      {
+        type: 'LANDMARK_DETECTION'
+      },
+      {
+        type: 'LOGO_DETECTION'
+      },
+      {
         type: 'LABEL_DETECTION'
+      },
+      {
+        type: 'TEXT_DETECTION'
+      },
+      {
+        type: 'DOCUMENT_TEXT_DETECTION'
+      },
+      {
+        type: 'SAFE_SEARCH_DETECTION'
+      },
+      {
+        type: 'IMAGE_PROPERTIES'
+      },
+      {
+        type: 'CROP_HINTS'
+      },
+      {
+        type: 'WEB_DETECTION'
       }
     ]
   }
