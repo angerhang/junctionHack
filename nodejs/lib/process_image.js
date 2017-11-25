@@ -47,10 +47,17 @@ exports.getObjectDesc = function (filePath) {
     .then((annotations) => {
       const desc = annotationsToText(annotations)
 
-      return getAsync('python --version')
+      return getAsync(`source ../scripts/facebookenv/bin/activate && python ../scripts/getItem.py "${desc}" "${filePath}"`)
         .then(data => {
+          let fullDesc
           console.log('cmd data', data)
-          return desc
+          data[0].split('\n').forEach(a => {
+            if(/RESULT.*RESULT/g.test(a)) {
+              fullDesc = a.replace(/RESULT/g, '')
+            }
+          })
+
+          return JSON.parse(fullDesc)
         })
     })
 }

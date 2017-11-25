@@ -5,6 +5,8 @@ const router = require('./lib/router')
 
 const app = express()
 
+app.use('/public', express.static('public'))
+
 app.use('/', router);
 app.use(errorHandler());
 

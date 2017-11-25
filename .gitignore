@@ -1,4 +1,5 @@
 .DS_Store
 node_modules
 nodejs/uploads
+nodejs/public/result.jpg
 scripts/facebookenv
