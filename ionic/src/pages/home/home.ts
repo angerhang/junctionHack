@@ -13,7 +13,7 @@ export class HomePage {
   public audioData: string;
   response: AdInterface = {
     url: "http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg",
-
+    title: "no ad here yet!"
   }
 
   public media = new MediaPlugin('../Library/NoCloud/recording.wav');
