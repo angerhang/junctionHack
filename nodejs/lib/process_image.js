@@ -49,8 +49,15 @@ exports.getObjectDesc = function (filePath) {
 
       return getAsync(`source ../scripts/facebookenv/bin/activate && python ../scripts/getItem.py "${desc}" ../scripts/1.jpeg`)
         .then(data => {
+          let fullDesc
           console.log('cmd data', data)
-          return desc
+          data[0].split('\n').forEach(a => {
+            if(/RESULT.*RESULT/g.test(a)) {
+              fullDesc = a.replace('RESULT', '')
+            }
+          })
+
+          return fullDesc
         })
     })
 }
