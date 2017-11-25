@@ -12,7 +12,8 @@ export class HomePage {
   public base64Image: string;
   public audioData: string;
   response: AdInterface = {
-    url: "http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg"
+    url: "http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg",
+    
   }
 
   public media = new MediaPlugin('../Library/NoCloud/recording.wav');
