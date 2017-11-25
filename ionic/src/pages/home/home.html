@@ -24,6 +24,9 @@
         Take Image
         <ion-icon name="arrow-forward"></ion-icon>
       </button>
+      <ion-card>
+        <img [src]="base64Image" *ngIf="base64Image" />
+      </ion-card>
     </ion-slide>
     <ion-slide>
       <ion-toolbar>

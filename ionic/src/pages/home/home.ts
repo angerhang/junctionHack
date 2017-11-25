@@ -50,7 +50,7 @@ export class HomePage {
       // imageData is a base64 encoded string
       this.base64Image = "data:image/jpeg;base64," + imageData
     }, (err) => {
-      // this.showAlert(err.message)
+      this.showAlert(err.message)
     });
   }
 
