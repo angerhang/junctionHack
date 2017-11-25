@@ -273,15 +273,16 @@ def obtain_products(name, num):
 def storeImg(products):
     # curl the product images and
     # give them names
-    try:
-        image_names = []
-        for i in range(0, len(products) - 1):
-            print i
-            localName = str(i) + '.jpg'
-            image_names.append(localName)
+    image_names = []
+    for i in range(0, len(products) - 1):
+        print i
+        localName = str(i) + '.jpg'
+        image_names.append(localName)
+        try:
             urllib.urlretrieve(products[i].medium_image_url, localName)
-    except:
-        print "Images cannot be found from a product\n! Continuing\n"
+        except:
+            print "Images cannot be found from a product\n! Continuing\n"
+
     return image_names
 
 def generateDesp(product):
@@ -313,6 +314,13 @@ def main(argv):
         my_file = str(i) + '.jpg'
         if os.path.isfile(my_file):
             os.remove(my_file)
+
+    # move the maxIdx to public folder
+    toSaveName = str(maxIdx) + '.jpg'
+    for filename in os.listdir("."):
+        if filename.startswith(toSaveName):
+            os.rename(toSaveName, 'public/result.jpg')
+
 
     return image_names
     # control product number
