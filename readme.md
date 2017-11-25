@@ -4,10 +4,10 @@ This repo contains the applicatino files (frontend and backend) file for the Vid
 
 ### How to call python script for the top 3 picks from amazon
 python getItem.py <Product-type> <Uploaded-image>
-product-type: one type returned by Google 
-uploaded-image: uploaded from the user 
+product-type: one type returned by Google
+uploaded-image: uploaded from the user
 
-### Python dependencies 
+### Python dependencies
 
 * Installed [Bottlenose](https://github.com/lionheart/bottlenose) (pip install bottlenose)
 * Installed lxml (pip install lxml)
