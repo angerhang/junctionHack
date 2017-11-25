@@ -50,6 +50,7 @@ exports.getObjectDesc = function (filePath) {
       return getAsync('python --version')
         .then(data => {
           console.log('cmd data', data)
+          return desc
         })
     })
 }

@@ -35,7 +35,7 @@ router.post('/annotate', upload.single('imagedata'), function (req, res) {
 
   processImage.getObjectDesc(req.file.path)
     .then((desc) => {
-      res.json(desc)
+      res.json({desc})
     })
     .catch((err) => {
       res.send(500, err)
