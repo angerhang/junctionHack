@@ -279,7 +279,7 @@ def storeImg(products):
         localName = str(i) + '.jpg'
         image_names.append(localName)
         try:
-            urllib.urlretrieve(products[i].medium_image_url, localName)
+            urllib.urlretrieve(products[i].large_image_url, localName)
         except:
             print "Images cannot be found from a product\n! Continuing\n"
 
