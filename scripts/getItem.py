@@ -291,7 +291,7 @@ def generateDesp(product):
     data['brand'] = product.brand
     data['title'] = product.title
     json_data = json.dumps(data, use_decimal=True)
-    print ('"' + json_data + '"')
+    print ('RESULT' + json_data + 'RESULT')
 
 def main(argv):
     # argv is the product name
