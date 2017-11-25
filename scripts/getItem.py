@@ -5,8 +5,10 @@ import math
 from PIL import Image
 import Levenshtein
 import os
+import json
 import sys
 import urllib
+import simplejson as json
 
 class BWImageCompare(object):
     """Compares two images (b/w)."""
@@ -282,6 +284,15 @@ def storeImg(products):
         print "Images cannot be found from a product\n! Continuing\n"
     return image_names
 
+def generateDesp(product):
+    data = {}
+    data['price'] = product.price_and_currency
+    data['keywords'] = product.get_attributes(['Brand', 'ProductGroup'])
+    data['brand'] = product.brand
+    data['title'] = product.title
+    json_data = json.dumps(data, use_decimal=True)
+    print ('"' + json_data + '"')
+
 def main(argv):
     # argv is the product name
     # obtain product desps
@@ -293,8 +304,8 @@ def main(argv):
     image_names = storeImg(products)
     maxIdx = getMaxImgIdx(image_names)
 
-    msg = '"' + products[maxIdx].title + '"'
-    print (msg)
+    generateDesp(products[maxIdx])
+
     # get rid of extra images
     for i in range(0, len(image_names)):
         if i == maxIdx:
