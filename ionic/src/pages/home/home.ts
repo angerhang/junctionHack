@@ -3,12 +3,17 @@ import { Component } from '@angular/core'
 import { NavController, AlertController } from 'ionic-angular'
 import { Camera, MediaPlugin } from 'ionic-native'
 
+import { AdInterface } from './adinterface'
+
 @Component({
   templateUrl: 'home.html'
 })
 export class HomePage {
   public base64Image: string;
   public audioData: string;
+  response: AdInterface = {
+    url: "http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg"
+  }
 
   public media = new MediaPlugin('../Library/NoCloud/recording.wav');
 
@@ -69,6 +74,11 @@ export class HomePage {
   sendToServer () {
     const xhr = new XMLHttpRequest()
     const formData = new FormData()
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        this.response = JSON.parse(xhr.response) // Outputs a DOMString by default
+      }
+    }
     formData.set('imagedata', this.base64Image)
     formData.set('audiodata', null)
     xhr.send(formData)
@@ -82,4 +92,6 @@ export class HomePage {
     });
     alert.present();
   }
+
+
 }

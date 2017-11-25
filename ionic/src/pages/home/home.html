@@ -19,7 +19,7 @@
       </ion-toolbar>
       <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
       <h2 class="slide-title">Lets take an image:</h2>
-      
+
       <button ion-button large clear icon-end color="primary" (click)="takePicture()">
         Take Image
         <ion-icon name="arrow-forward"></ion-icon>
@@ -30,7 +30,7 @@
       </ion-toolbar>
       <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
       <h2 class="slide-title">Lets record your description text:</h2>
-      
+
       <button ion-button large clear icon-end color="primary" (click)="startRecording()">
         Record Audio
         <ion-icon name="arrow-forward"></ion-icon>
@@ -46,9 +46,13 @@
     <ion-slide>
       <ion-toolbar>
       </ion-toolbar>
-      <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
       <h2 class="slide-title">Here is your Ad:</h2>
-      <ion-spinner></ion-spinner>
+
+      <div class="av-ad">
+        <img [src]="response.url">
+        <div class="adtext" [innerHTML]="response.title"></div>
+      </div>
+
     </ion-slide>
   </ion-slides>
 </ion-content>
