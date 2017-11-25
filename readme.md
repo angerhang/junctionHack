@@ -8,6 +8,14 @@ product-type: one type returned by Google
 uploaded-image: uploaded from the user 
 
 ### Python dependencies 
+* FB SDK
+```
+virtualenv facebookenv
+source facebookenv/bin/activate
+pip install -e git+https://github.com/mobolic/facebook-sdk.git#egg=facebook-sdk
+pip install lxml
+pip install python-dateutil
+```
 
 * Installed [Bottlenose](https://github.com/lionheart/bottlenose) (pip install bottlenose)
 * Installed lxml (pip install lxml)
