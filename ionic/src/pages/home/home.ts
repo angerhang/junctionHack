@@ -1,27 +1,15 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { Camera } from 'ionic-native';
+import { Component } from '@angular/core'
+import { UploadPage } from '../upload/upload'
 
 @Component({
-  selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  public base64Image: string;
-  constructor(public navCtrl: NavController) {
+  // this tells the tabs component which Pages
+  // should be each tab's root Page
+  tab1Root = UploadPage
 
-  }
+  constructor() {
 
-  takePicture(){
-    Camera.getPicture({
-        destinationType: Camera.DestinationType.DATA_URL,
-        targetWidth: 1000,
-        targetHeight: 1000
-    }).then((imageData) => {
-      // imageData is a base64 encoded string
-        this.base64Image = "data:image/jpeg;base64," + imageData;
-    }, (err) => {
-        console.log(err);
-    });
   }
 }

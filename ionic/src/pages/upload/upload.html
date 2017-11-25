@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      picture2ad
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content class="takepicture">
+      To start creating ads, please take a picture
+
+      <button class="take-picture" (click)="takePicture()" ion-button>Take a Picture</button>
+
+      
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+      <ion-card-content>
+          Latest Picture:
+          <img [src]="base64Image" *ngIf="base64Image" />
+      </ion-card-content>
+  </ion-card>
+</ion-content>
