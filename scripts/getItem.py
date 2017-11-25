@@ -5,8 +5,10 @@ import math
 from PIL import Image
 import Levenshtein
 import os
+import json
 import sys
 import urllib
+import simplejson as json
 
 class BWImageCompare(object):
     """Compares two images (b/w)."""
@@ -225,7 +227,12 @@ def getMaxIdx(imga, images):
     maxSim = -1
 
     for i in range(0, len(images)):
-        imgb = Image.open(images[i])
+        try:
+            imgb = Image.open(images[i])
+
+        except:
+            print 'image %d is missing, ignoring\n' % i
+            continue
 
         cmp = FuzzyImageCompare(imga, imgb)
         sim = cmp.similarity()
@@ -266,26 +273,48 @@ def obtain_products(name, num):
 def storeImg(products):
     # curl the product images and
     # give them names
-    image_names = []
-    for i in range(0, len(products) - 1):
-        localName = str(i) + '.jpg'
-        image_names.append(localName)
-        urllib.urlretrieve(products[i].medium_image_url, localName)
-
+    try:
+        image_names = []
+        for i in range(0, len(products) - 1):
+            print i
+            localName = str(i) + '.jpg'
+            image_names.append(localName)
+            urllib.urlretrieve(products[i].medium_image_url, localName)
+    except:
+        print "Images cannot be found from a product\n! Continuing\n"
     return image_names
+
+def generateDesp(product):
+    data = {}
+    data['price'] = product.price_and_currency
+    data['keywords'] = product.get_attributes(['Brand', 'ProductGroup'])
+    data['brand'] = product.brand
+    data['title'] = product.title
+    json_data = json.dumps(data, use_decimal=True)
+    print ('RESULT' + json_data + 'RESULT')
 
 def main(argv):
     # argv is the product name
     # obtain product desps
     name = argv[1]
     oriImg = argv[2]
-    numProducts = 20
+    numProducts = 10
 
     products = obtain_products(name, numProducts)
     image_names = storeImg(products)
     maxIdx = getMaxImgIdx(image_names)
 
-    print (products[maxIdx].title)
+    generateDesp(products[maxIdx])
+
+    # get rid of extra images
+    for i in range(0, len(image_names)):
+        if i == maxIdx:
+            continue
+        my_file = str(i) + '.jpg'
+        if os.path.isfile(my_file):
+            os.remove(my_file)
+
+    return image_names
     # control product number
     # os.system('python imgTest.py')
     # bestIdx = findSimilar(products, oriImg)
