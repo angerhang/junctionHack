@@ -11,6 +11,7 @@ import { AdInterface } from './adinterface'
 export class HomePage {
   public base64Image: string;
   public audioData: string;
+  postUrl: string = '' // put URL here
   response: AdInterface = {
     url: "http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg",
     title: "no ad here yet!"
@@ -59,7 +60,7 @@ export class HomePage {
       this.media.startRecord();
     }
     catch (e) {
-      this.showAlert('Could not start recording.');
+      this.showAlert(e.message)
     }
   }
 
@@ -82,6 +83,7 @@ export class HomePage {
     }
     formData.set('imagedata', this.base64Image)
     formData.set('audiodata', null)
+    xhr.open('POST', this.postUrl)
     xhr.send(formData)
   }
 
