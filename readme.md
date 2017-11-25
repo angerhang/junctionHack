@@ -18,6 +18,7 @@ python postFacebook.python <POST MSG> <Post PHOTO PATH>
 ```
 virtualenv facebookenv
 source facebookenv/bin/activate
+pip install git+https://github.com/simplejson/simplejson
 pip install -e git+https://github.com/mobolic/facebook-sdk.git#egg=facebook-sdk
 pip install lxml
 pip install python-dateutil
