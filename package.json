@@ -1,0 +1,19 @@
+{
+  "name": "junctionhack",
+  "version": "1.0.0",
+  "description": "the junction hack",
+  "main": "nodejs/index.js",
+  "scripts": {
+    "test": "(node nodejs/index.js)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angerhang/junctionHack.git"
+  },
+  "author": "dynamic flamenco bees",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angerhang/junctionHack/issues"
+  },
+  "homepage": "https://github.com/angerhang/junctionHack#readme"
+}

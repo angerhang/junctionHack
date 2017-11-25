@@ -1,25 +1,54 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      picture2ad
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content class="tutorial-page">
 
-<ion-content padding>
-  <ion-card>
-    <ion-card-content class="takepicture">
-      To start creating ads, please take a picture
-
-      <button class="take-picture" (click)="takePicture()" ion-button>Take a Picture</button>
-
+  <ion-slides pager>
+    <ion-slide *ngFor="let slide of slides">
+      <ion-toolbar>
+        <ion-buttons start>
+          <button ion-button color="primary">Go Back</button>
+        </ion-buttons>
+        <ion-buttons end>
+          <button ion-button color="primary">Skip</button>
+        </ion-buttons>
+      </ion-toolbar>
+      <img [src]="slide.image" class="slide-image" />
+      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+      <p [innerHTML]="slide.description"></p>
+    </ion-slide>
+    <ion-slide>
+      <ion-toolbar>
+      </ion-toolbar>
+      <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
+      <h2 class="slide-title">Lets take an image:</h2>
       
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-      <ion-card-content>
-          Latest Picture:
-          <img [src]="base64Image" *ngIf="base64Image" />
-      </ion-card-content>
-  </ion-card>
+      <button ion-button large clear icon-end color="primary" (click)="takePicture()">
+        Take Image
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-slide>
+    <ion-slide>
+      <ion-toolbar>
+      </ion-toolbar>
+      <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
+      <h2 class="slide-title">Lets record your description text:</h2>
+      
+      <button ion-button large clear icon-end color="primary" (click)="startRecording()">
+        Record Audio
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-slide>
+    <ion-slide>
+      <ion-toolbar>
+      </ion-toolbar>
+      <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
+      <h2 class="slide-title">crunching your data</h2>
+      <ion-spinner></ion-spinner>
+    </ion-slide>
+    <ion-slide>
+      <ion-toolbar>
+      </ion-toolbar>
+      <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
+      <h2 class="slide-title">Here is your Ad:</h2>
+      <ion-spinner></ion-spinner>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
