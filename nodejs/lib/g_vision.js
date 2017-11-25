@@ -9,9 +9,6 @@ exports.getAnnotations = function (filename) {
     image: {source: {filename}},
     features: [
       {
-        type: 'FACE_DETECTION'
-      },
-      {
         type: 'LANDMARK_DETECTION'
       },
       {
@@ -27,13 +24,7 @@ exports.getAnnotations = function (filename) {
         type: 'DOCUMENT_TEXT_DETECTION'
       },
       {
-        type: 'SAFE_SEARCH_DETECTION'
-      },
-      {
         type: 'IMAGE_PROPERTIES'
-      },
-      {
-        type: 'CROP_HINTS'
       },
       {
         type: 'WEB_DETECTION'
