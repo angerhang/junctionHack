@@ -1,15 +1,82 @@
 import { Component } from '@angular/core'
-import { UploadPage } from '../upload/upload'
+// import { ViewChild } from '@angular/core'
+import { NavController, AlertController } from 'ionic-angular'
+import { Camera, MediaPlugin } from 'ionic-native'
 
 @Component({
   templateUrl: 'home.html'
 })
 export class HomePage {
-  // this tells the tabs component which Pages
-  // should be each tab's root Page
-  tab1Root = UploadPage
+  public base64Image: string;
+  public media = new MediaPlugin('../Library/NoCloud/recording.wav');
 
-  constructor() {
+  constructor(
+    public navCtrl: NavController,
+    public alertCtrl: AlertController
+  ) {}
 
+  slides = [
+    {
+      title: "Ad Venture",
+      description: "Autonomous Ads from Picture to Deployment.",
+      image: "assets/imgs/logo.png",
+    },
+    {
+      title: "Step 1: Take a Picture",
+      description: "Take a picture of the item you want to advertise",
+      image: "assets/img/ica-slidebox-img-2.png",
+    },
+    {
+      title: "What is Ionic Cloud?",
+      description: "The <b>Ionic Cloud</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
+      image: "assets/img/ica-slidebox-img-3.png",
+    }
+  ];
+
+  takePicture () {
+    Camera.getPicture({
+      destinationType: Camera.DestinationType.DATA_URL,
+      targetWidth: 1000,
+      targetHeight: 1000
+    }).then((imageData) => {
+      // imageData is a base64 encoded string
+      this.base64Image = "data:image/jpeg;base64," + imageData
+    }, (err) => {
+      this.showAlert(err.message)
+    });
+  }
+
+  startRecording () {
+    try {
+      this.media.startRecord();
+    }
+    catch (e) {
+      this.showAlert('Could not start recording.');
+    }
+  }
+
+  stopRecording () {
+    try {
+      this.media.stopRecord();
+    }
+    catch (e) {
+      this.showAlert('Could not start recording.');
+    }
+  }
+
+  sendToServer () {
+    const xhr = new XMLHttpRequest()
+    const formData = new FormData()
+    formData.set('imagedata', this.base64Image)
+    xhr.send(formData)
+  }
+
+  private showAlert(message) {
+    let alert = this.alertCtrl.create({
+      title: 'Error',
+      subTitle: message,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }
