@@ -1,1 +1,1 @@
-# Video2Ad - nodejs part
+# Video2Ad - picture2ad

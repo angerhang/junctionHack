@@ -1,1 +1,1 @@
-# Video2Ad - ionic part
+# picture2ad - ionic app
