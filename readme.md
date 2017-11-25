@@ -3,11 +3,17 @@
 This repo contains the applicatino files (frontend and backend) file for the Video2Add junctionhack.
 
 ### How to call python script for the top 3 picks from amazon
-python getItem.py <Product-type> <Uploaded-image>
-product-type: one type returned by Google
-uploaded-image: uploaded from the user
+```bash
+$ python getItem.py <Product-type> <Uploaded-image>
+#product-type: one type returned by Google
+#uploaded-image: uploaded from the user
+```
 
-### Python dependencies 
+### How to call post to facebook
+```bash
+python postFacebook.python <POST MSG> <Post PHOTO PATH>
+```
+
 * FB SDK
 ```
 virtualenv facebookenv
