@@ -29,13 +29,14 @@ router.post('/annotate', upload.single('imagedata'), function (req, res) {
   if (!req.file) {
     throw new Error('No image sent')
   }
-  if (!/^image\/(jpe?g|png)$/i.test(req.file.mimetype)) {
-    throw new Error('Supports only png/jpg formats.')
+  if (!/^image\/(jpe?g)$/i.test(req.file.mimetype)) {
+    throw new Error('Supports only jpg formats.')
   }
 
   processImage.getObjectDesc(req.file.path)
-    .then((desc) => {
-      res.json({desc})
+    .then((result) => {
+      result.url = '/public/result.jpg'
+      res.json(result)
     })
     .catch((err) => {
       res.send(500, err)

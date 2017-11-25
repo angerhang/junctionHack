@@ -47,17 +47,17 @@ exports.getObjectDesc = function (filePath) {
     .then((annotations) => {
       const desc = annotationsToText(annotations)
 
-      return getAsync(`source ../scripts/facebookenv/bin/activate && python ../scripts/getItem.py "${desc}" ../scripts/1.jpeg`)
+      return getAsync(`source ../scripts/facebookenv/bin/activate && python ../scripts/getItem.py "${desc}" "${filePath}"`)
         .then(data => {
           let fullDesc
           console.log('cmd data', data)
           data[0].split('\n').forEach(a => {
             if(/RESULT.*RESULT/g.test(a)) {
-              fullDesc = a.replace('RESULT', '')
+              fullDesc = a.replace(/RESULT/g, '')
             }
           })
 
-          return fullDesc
+          return JSON.parse(fullDesc)
         })
     })
 }
