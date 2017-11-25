@@ -8,6 +8,8 @@ import { Camera, MediaPlugin } from 'ionic-native'
 })
 export class HomePage {
   public base64Image: string;
+  public audioData: string;
+
   public media = new MediaPlugin('../Library/NoCloud/recording.wav');
 
   constructor(
@@ -68,6 +70,7 @@ export class HomePage {
     const xhr = new XMLHttpRequest()
     const formData = new FormData()
     formData.set('imagedata', this.base64Image)
+    formData.set('audiodata', null)
     xhr.send(formData)
   }
 

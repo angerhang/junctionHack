@@ -6,13 +6,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { UploadPage } from '../pages/upload/upload';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    UploadPage
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -21,8 +19,7 @@ import { UploadPage } from '../pages/upload/upload';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    UploadPage
+    HomePage
   ],
   providers: [
     StatusBar,
