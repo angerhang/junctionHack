@@ -293,7 +293,8 @@ def main(argv):
     image_names = storeImg(products)
     maxIdx = getMaxImgIdx(image_names)
 
-    print (products[maxIdx].title)
+    msg = '"' + products[maxIdx].title + '"'
+    print (msg)
     # get rid of extra images
     for i in range(0, len(image_names)):
         if i == maxIdx:
