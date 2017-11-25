@@ -279,13 +279,20 @@ def main(argv):
     # obtain product desps
     name = argv[1]
     oriImg = argv[2]
-    numProducts = 20
+    numProducts = 10
 
     products = obtain_products(name, numProducts)
     image_names = storeImg(products)
     maxIdx = getMaxImgIdx(image_names)
 
     print (products[maxIdx].title)
+    # get rid of extra images
+    for i in range(0, len(image_names)):
+        if i == maxIdx:
+            continue
+        os.remove(str(i) + '.jpg')
+        print i
+
     # control product number
     # os.system('python imgTest.py')
     # bestIdx = findSimilar(products, oriImg)
