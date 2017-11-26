@@ -52,7 +52,7 @@ export class HomePage {
   slides = [
     {
       title: "Tell us about your product",
-      description: "Take a picture and desribe your product in words. We love to hear your <font size ='5' color='red'>voice</font>",
+      description: "Take a picture of your product in words. We love to hear your <font size ='5' color='red'>voice</font>",
       image: "assets/imgs/slide3.png",
     },
     {
