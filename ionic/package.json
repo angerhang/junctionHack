@@ -66,7 +66,8 @@
         "PHOTOLIBRARY_ADD_USAGE_DESCRIPTION": "your photo library usage message here",
         "PHOTOLIBRARY_USAGE_DESCRIPTION": "your photo library usage message here"
       },
-      "cordova-plugin-media": {}
+      "cordova-plugin-media": {},
+      "cordova-plugin-file": {}
     },
     "platforms": [
       "ios"

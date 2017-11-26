@@ -95,4 +95,5 @@
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="your photo library usage message here" />
     </plugin>
     <plugin name="cordova-plugin-media" spec="^4.0.0" />
+    <plugin name="cordova-plugin-file" spec="^5.0.0" />
 </widget>

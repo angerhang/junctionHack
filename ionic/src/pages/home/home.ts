@@ -1,7 +1,8 @@
 import { Component } from '@angular/core'
 // import { ViewChild } from '@angular/core'
 import { NavController, AlertController } from 'ionic-angular'
-import { Camera, MediaPlugin } from 'ionic-native'
+import { Camera, MediaPlugin, File } from 'ionic-native'
+declare var window;
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
 import { AdInterface } from './adinterface'
@@ -64,12 +65,42 @@ export class HomePage {
 
   takePicture () {
     Camera.getPicture({
-      destinationType: Camera.DestinationType.DATA_URL,
+      quality: 45,
       targetWidth: 1000,
-      targetHeight: 1000
-    }).then((imageData) => {
-      // imageData is a base64 encoded string
-      this.base64Image = "data:image/jpeg;base64," + imageData
+      targetHeight: 1000,
+      destinationType: Camera.DestinationType.FILE_URI,
+      encodingType: Camera.EncodingType.JPEG,
+      sourceType: Camera.PictureSourceType.CAMERA
+    }).then((image) => {
+
+      window.resolveLocalFileSystemURL(image, (fileEntry) => {
+          fileEntry.file((file) => {
+              var reader = new FileReader();
+              reader.onloadend = function(e) {
+                  var imgBlob = new Blob([this.result], {
+                      type: "image/jpeg"
+                  });
+                  const xhr = new XMLHttpRequest()
+                  const formData = new FormData()
+                  xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                      // this.response = JSON.parse(xhr.response) // Outputs a DOMString by default
+                    }
+                  }
+                  formData.append('imagedata', imgBlob)
+                  xhr.open('POST', 'http://34.227.109.77/annotate')
+                  xhr.send(formData)
+
+              };
+              reader.readAsArrayBuffer(file);
+
+          }, function(e) {
+              this.showAlert(e.message)
+          });
+      }, function(e) {
+          this.showAlert(e.message)
+      });
+
     }, (err) => {
       this.showAlert(err.message)
     });
@@ -93,7 +124,7 @@ export class HomePage {
     }
   }
 
-  sendToServer () {
+  sendToServer (imageBlob) {
     const xhr = new XMLHttpRequest()
     const formData = new FormData()
     xhr.onreadystatechange = () => {
@@ -102,8 +133,7 @@ export class HomePage {
         this.response = JSON.parse(xhr.response) // Outputs a DOMString by default
       }
     }
-    formData.set('imagedata', this.base64Image)
-    formData.set('audiodata', null)
+    formData.append('imagedata', imageBlob)
     xhr.open('POST', this.postUrl)
     xhr.send(formData)
   }
