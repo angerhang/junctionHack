@@ -43,7 +43,7 @@ export class HomePage {
       image: "assets/imgs/slide3.png",
     },
     {
-      title: "An smart ad will created",
+      title: "A smart ad will be created",
       description: "Our artificial intelligence platform will use computer vision and voice recognition to suggest the best ad for you based on  <font size ='5' color='blue'>thousands </font> of products on the web",
       image: "assets/imgs/slide2.png",
     },
