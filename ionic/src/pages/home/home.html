@@ -15,18 +15,19 @@
     </ion-slide>
     
     <ion-slide>
-      <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
-      <h2 class="slide-title">Lets take an image:</h2>
+      <ion-card>
+          <ion-card-content>
+              <h2 style="color:white; margin:1rem 1rem; font-size:30px">LET'S TAKE A PHOTO</h2>
+          </ion-card-content>
+        </ion-card>
 
-      <button ion-button large clear icon-end color="primary" (click)="takePicture()">
+      <button style="margin: 10rem 10rem;" ion-button large clear icon-end color="primary" (click)="takePicture()" >
         Take Image
         <ion-icon name="arrow-forward"></ion-icon>
       </button>
-      <ion-card>
-        <ion-card-content>
-            <img [src]="base64Image" *ngIf="base64Image" />
-        </ion-card-content>
-      </ion-card>
+
+      <img src="assets/imgs/camera.png" />
+
     </ion-slide>
     <ion-slide>
       <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
