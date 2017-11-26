@@ -113,6 +113,13 @@ export class HomePage {
     });
   }
 
+  details () {
+    this.slideNext()
+    setTimeout(() => {
+      this.slideNext()
+    }, 1000)
+  }
+
   startRecording () {
     try {
       this.MediaPlugin.startRecord();
