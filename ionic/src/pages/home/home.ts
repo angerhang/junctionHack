@@ -33,6 +33,10 @@ export class HomePage {
     this.all_slides.slideTo(currentIndex + 1, 500);
   }
 
+  publishFB() {
+    this.slideNext()
+  }
+
   goToFirstSlide() {
     this.all_slides.slideTo(0, 500);
   }
