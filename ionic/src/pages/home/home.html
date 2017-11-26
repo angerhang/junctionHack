@@ -1,22 +1,20 @@
 <ion-content class="tutorial-page">
 
   <ion-slides pager>
+
+      <ion-slide style="background-color: rgb(110, 191, 235)">
+        <img src="assets/imgs/logo.png" class="front-image" />
+        <h2 class="main-title">AD VENTURE</h2>              
+        <p style="color: white; margin-top: 7rem; font-size:20px;">Start right --></p>
+      </ion-slide>
+
     <ion-slide *ngFor="let slide of slides">
-      <ion-toolbar>
-        <ion-buttons start>
-          <button ion-button color="primary">Go Back</button>
-        </ion-buttons>
-        <ion-buttons end>
-          <button ion-button color="primary">Skip</button>
-        </ion-buttons>
-      </ion-toolbar>
-      <img [src]="slide.image" class="slide-image" />
-      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+      <h2 class="slide-title" [innerHTML]="slide.title"></h2>      
+      <img class="slide-img" [src]="slide.image"/>
       <p [innerHTML]="slide.description"></p>
     </ion-slide>
+    
     <ion-slide>
-      <ion-toolbar>
-      </ion-toolbar>
       <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
       <h2 class="slide-title">Lets take an image:</h2>
 
@@ -31,8 +29,6 @@
       </ion-card>
     </ion-slide>
     <ion-slide>
-      <ion-toolbar>
-      </ion-toolbar>
       <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
       <h2 class="slide-title">Lets record your description text:</h2>
 
@@ -42,8 +38,6 @@
       </button>
     </ion-slide>
     <ion-slide>
-        <ion-toolbar>
-        </ion-toolbar>
         <h2 class="slide-title">Send Data</h2>
   
         <button ion-button large clear icon-end color="primary" (click)="sendToServer()">
@@ -52,22 +46,17 @@
         </button>
       </ion-slide>
     <ion-slide>
-      <ion-toolbar>
-      </ion-toolbar>
       <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
       <h2 class="slide-title">crunching your data</h2>
       <ion-spinner></ion-spinner>
     </ion-slide>
     <ion-slide>
-      <ion-toolbar>
-      </ion-toolbar>
       <h2 class="slide-title">Here is your Ad:</h2>
 
       <div class="av-ad">
         <img [src]="response.url">
         <div class="adtext" [innerHTML]="response.title"></div>
       </div>
-
     </ion-slide>
   </ion-slides>
 </ion-content>

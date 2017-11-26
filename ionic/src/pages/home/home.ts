@@ -26,20 +26,20 @@ export class HomePage {
 
   slides = [
     {
-      title: "Ad Venture",
-      description: "Autonomous Ads from Picture to Deployment.",
-      image: "assets/imgs/logo.png",
+      title: "Tell us about your product",
+      description: "Take a picture and desribe your product in words. We love to hear your <font size ='5' color='red'>voice</font>",
+      image: "assets/imgs/slide3.png",
     },
     {
-      title: "Step 1: Take a Picture",
-      description: "Take a picture of the item you want to advertise",
-      image: "assets/img/ica-slidebox-img-2.png",
+      title: "An smart ad will created",
+      description: "Our artificial intelligence platform will use computer vision and voice recognition to suggest the best ad for you based on  <font size ='5' color='blue'>thousands </font> of products on the web",
+      image: "assets/imgs/slide2.png",
     },
     {
-      title: "What is Ionic Cloud?",
-      description: "The <b>Ionic Cloud</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
-      image: "assets/img/ica-slidebox-img-3.png",
-    }
+      title: "Finally Preview and share!",
+      description: "Finally preview and publish your custom ad within  <font size ='5'>one click </font> :D",
+      image: "assets/imgs/ad.png",
+    },
   ];
 
   takePicture () {

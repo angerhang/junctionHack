@@ -1,4 +1,18 @@
+
+
 .tutorial-page {
+    .main-title {
+        color: white;
+        font-family: Gadget;
+        font-size: 30px;
+    }
+
+    .front-image {
+        max-height: 40%;
+        max-width: 35%; 
+        margin: 10rem 0;
+    }
+
     .toolbar-background {
         background: #fff;
         border-color: transparent;
@@ -7,25 +21,35 @@
         height: 100%;
     }
     .slide-title {
-        margin-top: 2.8rem;
+        margin-top: 8rem;
     }
     .slide-image {
-        max-height: 50%;
-        max-width: 60%;
-        margin: 18px 0;
+        max-height: 80%;
+        max-width: 80%;
+        margin: 22px 0;
     }
     b {
         font-weight: 500;
     }
     p {
         padding: 0 40px;
-        font-size: 14px;
+        font-size: 15px;
         line-height: 1.5;
         color: #60646B;
         b {
             color: #000000;
         }
     }
+}
+
+.front-title {
+    margin-top: 4rem;
+}
+
+.title-image {
+    max-height: 40%;
+    max-width: 40%;
+    margin: 22px 0;
 }
 
 .av-ad {
