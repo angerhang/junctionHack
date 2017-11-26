@@ -1,6 +1,7 @@
 const fastLevenshtein = require('fast-levenshtein')
 const Bluebird = require('bluebird')
 const cmd = require('node-cmd')
+const os = require('os')
 
 const gVision = require('./g_vision')
 
@@ -48,8 +49,8 @@ exports.getObjectDesc = function (filePath) {
       const desc = annotationsToText(annotations)
 
       let cmd = `python ../scripts/getItem.py "${desc}" "${filePath}"`
-      if (process.env.NODE_ENV !== 'production') {
-        cmd = 'source ../scripts/facebookenv/bin/activate && ${cmd}'
+      if (os.type() !== 'Linux') {
+        cmd = `source ../scripts/facebookenv/bin/activate && ${cmd}`
       }
       return getAsync(cmd)
         .then(data => {
