@@ -49,7 +49,7 @@ export class HomePage {
     },
     {
       title: "Finally preview and share!",
-      description: "Finally preview and publish your custom ad within  <font size ='5'>one click </font> :D",
+      description: "Finally preview and publish your custom ad within  <font size ='5'>one click </font>",
       image: "assets/imgs/ad.png",
     },
   ];
