@@ -1,7 +1,8 @@
 import { Component } from '@angular/core'
 // import { ViewChild } from '@angular/core'
 import { NavController, AlertController } from 'ionic-angular'
-import { Camera, MediaPlugin } from 'ionic-native'
+import { Camera, MediaPlugin, File } from 'ionic-native'
+declare var window;
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
 import { AdInterface } from './adinterface'
@@ -11,7 +12,7 @@ import { AdInterface } from './adinterface'
 })
 export class HomePage {
   @ViewChild(Slides) all_slides: Slides;
-  
+  mediaPlugin: MediaPlugin = null;
   public base64Image: string;
   public audioData: string;
   postUrl: string = 'http://34.227.109.77/annotate' // put URL here
@@ -33,7 +34,15 @@ export class HomePage {
   }
 
   goToFirstSlide() {
-    this.all_slides.slideTo(0, 500);    
+    this.all_slides.slideTo(0, 500);
+  }
+
+  get MediaPlugin(): MediaPlugin {
+    if (this.mediaPlugin == null) {
+      this.mediaPlugin = new MediaPlugin('recording.wav');
+    }
+
+    return this.mediaPlugin;
   }
 
   slides = [
@@ -56,12 +65,45 @@ export class HomePage {
 
   takePicture () {
     Camera.getPicture({
-      destinationType: Camera.DestinationType.DATA_URL,
+      quality: 45,
       targetWidth: 1000,
-      targetHeight: 1000
-    }).then((imageData) => {
-      // imageData is a base64 encoded string
-      this.base64Image = "data:image/jpeg;base64," + imageData
+      targetHeight: 1000,
+      destinationType: Camera.DestinationType.FILE_URI,
+      encodingType: Camera.EncodingType.JPEG,
+      sourceType: Camera.PictureSourceType.CAMERA
+    }).then((image) => {
+
+      window.resolveLocalFileSystemURL(image, (fileEntry) => {
+          fileEntry.file((file) => {
+              var reader = new FileReader();
+              var self = this
+              reader.onloadend = function (e) {
+                  var imgBlob = new Blob([this.result], {
+                      type: "image/jpeg"
+                  });
+                  const xhr = new XMLHttpRequest()
+                  const formData = new FormData()
+                  xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                      console.log(xhr.response)
+                      self.response = JSON.parse(xhr.response) // Outputs a DOMString by default
+                      self.slideNext()
+                    }
+                  }
+                  formData.append('imagedata', imgBlob)
+                  xhr.open('POST', 'http://34.227.109.77/annotate')
+                  xhr.send(formData)
+
+              };
+              reader.readAsArrayBuffer(file);
+
+          }, function(e) {
+              this.showAlert(e.message)
+          });
+      }, function(e) {
+          this.showAlert(e.message)
+      });
+
     }, (err) => {
       this.showAlert(err.message)
     });
@@ -69,7 +111,7 @@ export class HomePage {
 
   startRecording () {
     try {
-      this.media.startRecord();
+      this.MediaPlugin.startRecord();
     }
     catch (e) {
       this.showAlert(e.message)
@@ -78,24 +120,24 @@ export class HomePage {
 
   stopRecording () {
     try {
-      this.media.stopRecord();
+      this.MediaPlugin.stopRecord();
     }
     catch (e) {
       this.showAlert('Could not start recording.');
     }
   }
 
-  sendToServer () {
+  sendToServer (imageBlob) {
     const xhr = new XMLHttpRequest()
     const formData = new FormData()
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
         console.log(xhr.response)
         this.response = JSON.parse(xhr.response) // Outputs a DOMString by default
+        this.slideNext() // slide next
       }
     }
-    formData.set('imagedata', this.base64Image)
-    formData.set('audiodata', null)
+    formData.append('imagedata', imageBlob)
     xhr.open('POST', this.postUrl)
     xhr.send(formData)
   }
