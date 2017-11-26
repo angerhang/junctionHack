@@ -2,13 +2,16 @@ import { Component } from '@angular/core'
 // import { ViewChild } from '@angular/core'
 import { NavController, AlertController } from 'ionic-angular'
 import { Camera, MediaPlugin } from 'ionic-native'
-
+import { ViewChild } from '@angular/core';
+import { Slides } from 'ionic-angular';
 import { AdInterface } from './adinterface'
 
 @Component({
   templateUrl: 'home.html'
 })
 export class HomePage {
+  @ViewChild(Slides) all_slides: Slides;
+  
   public base64Image: string;
   public audioData: string;
   postUrl: string = '' // put URL here
@@ -23,6 +26,15 @@ export class HomePage {
     public navCtrl: NavController,
     public alertCtrl: AlertController
   ) {}
+
+  slideNext() {
+    let currentIndex = this.all_slides.getActiveIndex();
+    this.all_slides.slideTo(currentIndex + 1, 500);
+  }
+
+  goToFirstSlide() {
+    this.all_slides.slideTo(0, 500);    
+  }
 
   slides = [
     {

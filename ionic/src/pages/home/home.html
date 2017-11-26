@@ -4,9 +4,9 @@
 
     <ion-slide style="background-color: rgb(110, 191, 235)">
       <img src="assets/imgs/logo.png" class="front-image" />
-       <h2 class="main-title">AD VENTURE</h2>              
-       <p style="color: white; margin-top: 7rem; font-size:20px;">Start right --></p>
-     </ion-slide>
+       <h2 class="main-title">AD VENTURE</h2>           
+       <button ion-button color="secondary" style="color:white;  margin-top: 9rem;" round (click)="slideNext()">Start here</button>        
+    </ion-slide>
 
     <ion-slide *ngFor="let slide of slides">
       <h2 class="slide-title" [innerHTML]="slide.title"></h2>      
@@ -17,7 +17,7 @@
     <ion-slide>
         <ion-card>
             <ion-card-content>
-                <h2 style="color:white; margin:1rem 1rem; font-size:30px">LET'S TAKE A PHOTO</h2>
+                <h2 style="color:white; margin:0rem 1rem; font-size:30px">LET'S TAKE A PHOTO</h2>
             </ion-card-content>
           </ion-card>
   
@@ -33,7 +33,7 @@
           </ion-card-content>
         </ion-card>
 
-        <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
+        <img src="assets/imgs/camera.png" class="slide-image" />
         
       </ion-slide>
   
@@ -136,7 +136,7 @@
             
               </ion-list>
               
-              <button ion-button round style="margin-top: 3rem">Confirm</button>                      
+              <button ion-button round style="margin-top: 3rem" (click)="slideNext()">Confirm</button>                      
     </ion-slide>
     <ion-slide>
       <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
@@ -154,7 +154,7 @@
 
     <ion-slide>
         <img src="assets/imgs/congrats.jpg" style="padding-top: 15rem; padding-bottom: 5rem;"/>
-        <button ion-button round>Post another venture ad</button>        
+        <button ion-button round (click)="goToFirstSlide()">Post another venture ad</button>        
     </ion-slide>
 
   </ion-slides>
