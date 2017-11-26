@@ -9,6 +9,7 @@ import json
 import sys
 import urllib
 import simplejson as json
+from postFacebook import publish
 
 class BWImageCompare(object):
     """Compares two images (b/w)."""
@@ -293,6 +294,9 @@ def generateDesp(product):
     data['title'] = product.title
     json_data = json.dumps(data, use_decimal=True)
     print ('RESULT' + json_data + 'RESULT')
+
+    publish(product.title, 'public/result.jpg')
+    
 
 def main(argv):
     # argv is the product name

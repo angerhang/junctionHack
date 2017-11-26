@@ -1,7 +1,7 @@
 import facebook
 import sys
 
-def main():
+def publish(msg, photo_path):
   # Fill in the values noted in previous steps here
   cfg = {
     "page_id"      : "1956961034578187",  # Step 1
@@ -11,8 +11,6 @@ def main():
 
   api = get_api(cfg)
 
-  msg = sys.argv[1]
-  photo_path = sys.argv[2]
   api.put_photo(image=open(photo_path, 'rb'),
                   message=msg)
 
@@ -28,7 +26,3 @@ def get_api(cfg):
   # http://stackoverflow.com/questions/8231877/facebook-access-token-for-pages
   # and make that long-lived token as in Step 3
 
-if __name__ == "__main__":
-  # first arugment post message
-  # second argument image path
-  main()
