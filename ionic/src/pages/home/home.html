@@ -13,22 +13,50 @@
       <img class="slide-img" [src]="slide.image"/>
       <p [innerHTML]="slide.description"></p>
     </ion-slide>
-    
+
     <ion-slide>
+        <ion-card>
+            <ion-card-content>
+                <h2 style="color:white; margin:1rem 1rem; font-size:30px">LET'S TAKE A PHOTO</h2>
+            </ion-card-content>
+          </ion-card>
+  
+  
+        <button ion-button large clear icon-end color="primary" (click)="takePicture()">
+          Take Image
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+        
+        <ion-card>
+          <ion-card-content>
+              <img [src]="base64Image" *ngIf="base64Image" />
+          </ion-card-content>
+        </ion-card>
+
+        <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
+        
+      </ion-slide>
+  
+    <!-- <ion-slide>
       <ion-card>
           <ion-card-content>
               <h2 style="color:white; margin:1rem 1rem; font-size:30px">LET'S TAKE A PHOTO</h2>
           </ion-card-content>
         </ion-card>
 
-      <button style="margin: 10rem 10rem;" ion-button large clear icon-end color="primary" (click)="takePicture()" >
+      <button style="margin: 10rem 3rem;" ion-button large clear icon-end color="primary" (click)="takePicture()" >
         Take Image
         <ion-icon name="arrow-forward"></ion-icon>
       </button>
 
+           <ion-card>
+                  <ion-card-content>
+                    <img [src]="base64Image" *ngIf="base64Image" />
+                  </ion-card-content>
+               </ion-card>
       <img src="assets/imgs/camera.png" />
 
-    </ion-slide>
+    </ion-slide> -->
     <ion-slide>
       <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
       <h2 class="slide-title">Lets record your description text:</h2>
@@ -45,7 +73,71 @@
           Send Data
           <ion-icon name="arrow-forward"></ion-icon>
         </button>
-      </ion-slide>
+    </ion-slide>
+    <ion-slide>
+        <ion-list no-border>
+            
+                <ion-list-header>
+                  Extracted Product description
+                </ion-list-header>
+            
+                <ion-item>
+                  <ion-icon name='pin' item-start></ion-icon>
+                  Product name
+                  <ion-input type="text" placeholder="Product name"></ion-input>                  
+                </ion-item>
+              
+                <ion-item>
+                  <ion-toggle checked="false"></ion-toggle>
+                  <ion-label>
+                    On sale?
+                  </ion-label>
+                  <ion-icon name='calculator' item-start></ion-icon>
+                </ion-item>
+            
+                <ion-item>
+                  <ion-icon name='cash' item-start></ion-icon>
+                  Price 
+                  <ion-input type="text" placeholder="Price"></ion-input>                  
+                </ion-item>
+            
+                <ion-item>
+                    <ion-icon name='planet' item-start></ion-icon>
+                    Bran d
+                    <ion-input type="text" placeholder="Brand"></ion-input>                  
+                  </ion-item>
+                  
+                <ion-item>
+                  <ion-icon name='calendar' item-start></ion-icon>
+                  Product category
+                  <ion-input type="text" placeholder="Product category"></ion-input>                   
+                </ion-item>
+                
+              </ion-list>
+            
+            
+              <ion-list>
+            
+                <ion-list-header>
+                  Additional Info
+                </ion-list-header>
+            
+                <ion-item>
+                  Target customers
+                  <ion-icon name='body' item-start></ion-icon>
+                  <ion-input type="text" placeholder="Target customer"></ion-input>                   
+                </ion-item>
+            
+                <ion-item>
+                    <ion-icon name='ios-paper' item-start></ion-icon>                    
+                    <ion-label item start> Detailed Description</ion-label>
+                    <ion-textarea></ion-textarea>
+                  </ion-item>
+            
+              </ion-list>
+              
+              <button ion-button round style="margin-top: 3rem">Confirm</button>                      
+    </ion-slide>
     <ion-slide>
       <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
       <h2 class="slide-title">crunching your data</h2>
@@ -62,7 +154,7 @@
 
     <ion-slide>
         <img src="assets/imgs/congrats.jpg" style="padding-top: 15rem; padding-bottom: 5rem;"/>
-        <button ion-button round>Post another venture ad!</button>        
+        <button ion-button round>Post another venture ad</button>        
     </ion-slide>
 
   </ion-slides>
