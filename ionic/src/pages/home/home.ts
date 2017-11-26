@@ -11,7 +11,7 @@ import { AdInterface } from './adinterface'
 })
 export class HomePage {
   @ViewChild(Slides) all_slides: Slides;
-  
+  mediaPlugin: MediaPlugin = null;
   public base64Image: string;
   public audioData: string;
   postUrl: string = 'http://34.227.109.77/annotate' // put URL here
@@ -33,7 +33,15 @@ export class HomePage {
   }
 
   goToFirstSlide() {
-    this.all_slides.slideTo(0, 500);    
+    this.all_slides.slideTo(0, 500);
+  }
+
+  get MediaPlugin(): MediaPlugin {
+    if (this.mediaPlugin == null) {
+      this.mediaPlugin = new MediaPlugin('recording.wav');
+    }
+
+    return this.mediaPlugin;
   }
 
   slides = [
@@ -69,7 +77,7 @@ export class HomePage {
 
   startRecording () {
     try {
-      this.media.startRecord();
+      this.MediaPlugin.startRecord();
     }
     catch (e) {
       this.showAlert(e.message)
@@ -78,7 +86,7 @@ export class HomePage {
 
   stopRecording () {
     try {
-      this.media.stopRecord();
+      this.MediaPlugin.stopRecord();
     }
     catch (e) {
       this.showAlert('Could not start recording.');
