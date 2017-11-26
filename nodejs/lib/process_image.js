@@ -47,7 +47,11 @@ exports.getObjectDesc = function (filePath) {
     .then((annotations) => {
       const desc = annotationsToText(annotations)
 
-      return getAsync(`source ../scripts/facebookenv/bin/activate && python ../scripts/getItem.py "${desc}" "${filePath}"`)
+      let cmd = `python ../scripts/getItem.py "${desc}" "${filePath}"`
+      if (process.env.NODE_ENV !== 'production') {
+        cmd = 'source ../scripts/facebookenv/bin/activate && ${cmd}'
+      }
+      return getAsync(cmd)
         .then(data => {
           let fullDesc
           console.log('cmd data', data)
