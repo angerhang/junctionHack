@@ -76,7 +76,8 @@ export class HomePage {
       window.resolveLocalFileSystemURL(image, (fileEntry) => {
           fileEntry.file((file) => {
               var reader = new FileReader();
-              reader.onloadend = function(e) {
+              var self = this
+              reader.onloadend = function (e) {
                   var imgBlob = new Blob([this.result], {
                       type: "image/jpeg"
                   });
@@ -84,7 +85,9 @@ export class HomePage {
                   const formData = new FormData()
                   xhr.onreadystatechange = () => {
                     if (xhr.readyState === 4) {
-                      // this.response = JSON.parse(xhr.response) // Outputs a DOMString by default
+                      console.log(xhr.response)
+                      self.response = JSON.parse(xhr.response) // Outputs a DOMString by default
+                      self.slideNext()
                     }
                   }
                   formData.append('imagedata', imgBlob)
@@ -131,6 +134,7 @@ export class HomePage {
       if (xhr.readyState === 4) {
         console.log(xhr.response)
         this.response = JSON.parse(xhr.response) // Outputs a DOMString by default
+        this.slideNext() // slide next
       }
     }
     formData.append('imagedata', imageBlob)
