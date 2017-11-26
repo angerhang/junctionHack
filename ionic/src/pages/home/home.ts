@@ -14,7 +14,7 @@ export class HomePage {
   
   public base64Image: string;
   public audioData: string;
-  postUrl: string = '' // put URL here
+  postUrl: string = 'http://34.227.109.77/annotate' // put URL here
   response: AdInterface = {
     url: "http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg",
     title: "no ad here yet!"
@@ -90,6 +90,7 @@ export class HomePage {
     const formData = new FormData()
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
+        console.log(xhr.response)
         this.response = JSON.parse(xhr.response) // Outputs a DOMString by default
       }
     }
@@ -107,6 +108,4 @@ export class HomePage {
     });
     alert.present();
   }
-
-
 }
