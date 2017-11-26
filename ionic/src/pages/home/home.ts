@@ -11,7 +11,7 @@ import { AdInterface } from './adinterface'
 export class HomePage {
   public base64Image: string;
   public audioData: string;
-  postUrl: string = 'http://0.0.0.0:3214' // put URL here
+  postUrl: string = 'http://34.227.109.77/annotate' // put URL here
   response: AdInterface = {
     url: "http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg",
     title: "no ad here yet!"
@@ -96,6 +96,4 @@ export class HomePage {
     });
     alert.present();
   }
-
-
 }
