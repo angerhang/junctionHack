@@ -26,6 +26,7 @@ router.get('/', function (req, res) {
 })
 
 router.post('/annotate', upload.single('imagedata'), function (req, res) {
+  console.log(req)
   if (!req.file) {
     throw new Error('No image sent')
   }

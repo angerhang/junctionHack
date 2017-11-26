@@ -94,7 +94,7 @@ export class HomePage {
                       self.slideNext()
                     }
                   }
-                  formData.append('imagedata', imgBlob)
+                  formData.append('imagedata', imgBlob, 'imagedata')
                   xhr.open('POST', 'http://34.227.109.77/annotate')
                   xhr.send(formData)
 
@@ -129,21 +129,6 @@ export class HomePage {
     catch (e) {
       this.showAlert('Could not start recording.');
     }
-  }
-
-  sendToServer (imageBlob) {
-    const xhr = new XMLHttpRequest()
-    const formData = new FormData()
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4) {
-        console.log(xhr.response)
-        this.response = JSON.parse(xhr.response) // Outputs a DOMString by default
-        this.slideNext() // slide next
-      }
-    }
-    formData.append('imagedata', imageBlob)
-    xhr.open('POST', this.postUrl)
-    xhr.send(formData)
   }
 
   private showAlert(message) {
